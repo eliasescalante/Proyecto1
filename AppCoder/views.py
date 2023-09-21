@@ -3,16 +3,16 @@ from AppCoder.models import *
 from django.http import HttpResponse
 # Create your views here.
 def inicio(request):
-    return HttpResponse('vista de inicio')
+    return render(request,"AppCoder\inicio.html")
 
 def cursos(request):
-    return HttpResponse('vista cursos')
+    return render(request,"AppCoder\cursos.html")
 
 def profesores(request):
-    return HttpResponse('vista profesores')
+    return render(request,"AppCoder\profesores.html")
 
 def estudiantes(request):
-    return HttpResponse("Vista Estudiante")
+    return render(request,"AppCoder\estudiantes.html")
 
 def entregables(request):
-    return HttpResponse("Vista Entregable")
+    return render(request,"AppCoder\entregables.html")
