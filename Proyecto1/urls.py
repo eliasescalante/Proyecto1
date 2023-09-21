@@ -27,4 +27,5 @@ urlpatterns = [
     path('provandoTemplate/',probandoTemplate),
     path('provandoTemplate2/',probandoTemplate2),
     path('curso/',curso)
+    # páth()
 ]
