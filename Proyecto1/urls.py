@@ -22,10 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppCoder/',include('AppCoder.urls')),
     # páth()
-    path('saludo',saludo),
-    path('segundavista',segunda_vista),
-    path('diaDeHoy',diaDeHoy),
-    path('miNombreEs/<nombre>', miNombreEs),
-    path('provandoTemplate/',probandoTemplate),
-    path('provandoTemplate2/',probandoTemplate2),
+    # path('saludo',saludo),
+    # path('segundavista',segunda_vista),
+    # path('diaDeHoy',diaDeHoy),
+    # path('miNombreEs/<nombre>', miNombreEs),
+    # path('provandoTemplate/',probandoTemplate),
+    # path('provandoTemplate2/',probandoTemplate2),
 ]

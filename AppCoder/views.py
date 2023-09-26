@@ -3,9 +3,9 @@ from AppCoder.models import *
 from django.http import HttpResponse
 # Create your views here.
 def inicio(request):
-    return render(request,"AppCoder\inicio.html")
+    return render(request,"AppCoder\index.html")
 
-def cursos(request):
+def Cursos(request):
     return render(request,"AppCoder\cursos.html")
 
 def profesores(request):
