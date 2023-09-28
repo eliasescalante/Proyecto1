@@ -19,7 +19,7 @@ from django.urls import path, include
 from Proyecto1.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('AppCoder/',include('AppCoder.urls')),
     # páth()
     # path('saludo',saludo),
