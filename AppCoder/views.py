@@ -25,7 +25,7 @@ def cursoFormulario(request):
     if request.method == 'POST':
         miFormulario = CursoFormulario(request.POST)
         print(miFormulario)
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
             informacion = miFormulario.cleaned_data
             curso = Curso(nombre=informacion['curso'], camada=informacion['camada'])
             curso.save()
