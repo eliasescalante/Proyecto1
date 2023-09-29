@@ -45,3 +45,18 @@ def profesorFormulario(request):
     else:
         miFormulario = ProfesorFormulario()
     return render(request,"AppCoder\profesorFormulario.html",{"miFormulario":miFormulario})
+
+def busquedaCamada(request):
+    return render(request, r"AppCoder\busquedaCamada.html")
+
+def buscar(request):
+    
+    if request.GET["camada"]:
+        camada = request.GET['camada']
+        cursos = Curso.objects.filter(camada_icontains=camada)
+
+        return render(request, r"AppCoder\resultadosBusqueda.html",{"cursos":cursos,"camada":camada})
+    else:
+        respuesta = "No enviaste datos"
+    # respuesta = f"Estoy buscando la camada nro: {request.GET['camada']}"
+    return HttpResponse(respuesta)
