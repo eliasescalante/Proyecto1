@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from AppCoder.models import *
 from django.http import HttpResponse
-from AppCoder.forms import CursoFormulario, ProfesorFormulario
+from AppCoder.forms import *
+
+
 # Create your views here.
 def inicio(request):
     return render(request,"AppCoder\index.html")
@@ -60,3 +62,19 @@ def buscar(request):
         respuesta = "No enviaste datos"
     # respuesta = f"Estoy buscando la camada nro: {request.GET['camada']}"
     return HttpResponse(respuesta)
+
+
+# def buscar(request):
+#     camada = request.GET.get('camada', '')
+
+#     if camada:
+#         cursos = Curso.objects.filter(camada_icontains=camada)
+
+#         if cursos:
+#             return render(request, r"AppCoder\resultadosBusqueda.html",{"cursos":cursos,"camada":camada})
+#         else:
+#             respuesta = "No se encontraron cursos con esa camada"
+#             return render(request, r"AppCoder\busquedaCamada.html", {"respuesta": respuesta})
+#     else:
+#         respuesta = "No enviaste datos"
+#         return render(request, r"AppCoder\busquedaCamada.html", {"respuesta": respuesta})
