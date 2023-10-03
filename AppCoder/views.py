@@ -74,5 +74,21 @@ def imprimir(request):
     }
     return render(request, r"AppCoder\imprimirBase.html",context)
 
+def leerProfesores(request):
 
+    profesores = Profesor.objects.all()
+
+    contexto = {"profesores": profesores}
+
+    return render(request, "AppCoder\leerProfesores.html", contexto)
+
+def eliminarProfesor(request,profesor_nombre):
+
+    profesor = Profesor.objects.get(nombre=profesor_nombre)
+    profesor.delete()
+
+    profesores = Profesor.objects.all()
+    contexto = {"profesores": profesores}
+
+    return render(request, "AppCoder\leerProfesores.html",contexto)
 

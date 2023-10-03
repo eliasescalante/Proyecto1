@@ -1,0 +1,30 @@
+{% extends "AppCoder/padre.html"%}
+{% load static %}
+
+{% block section1 %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<center>
+    <h1>Base de profesores</h1>
+
+    {% for profesor in profesores%}
+        <li>{{profesor}}</li>
+        <button>
+            <a href="{% url 'EliminarProfesor' profesor.nombre %}"> Eliminar</a>
+        </button>
+    {%endfor%}
+
+</center>
+
+<br>
+<br>
+<br>
+<br>
+<center>
+<h3><a href="{% url 'ProfesorFormulario' %}">Cargar otro profesor</a></h3>
+</center>
+{% endblock %}
