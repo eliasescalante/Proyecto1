@@ -104,8 +104,9 @@ def editarProfesor(request, profesor_nombre):
 
             profesor.save()
 
-            return render(request, "AppCoder\inicio.html")
+            return render(request, "AppCoder\index.html")
     else:
+        # miFormulario = ProfesorFormulario()
         miFormulario = ProfesorFormulario(initial={'nombre':profesor.nombre, 'apellido':profesor.apellido,
                                             'email':profesor.email,'profesion':profesor.profesion})
 

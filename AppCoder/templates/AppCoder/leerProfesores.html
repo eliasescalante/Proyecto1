@@ -12,11 +12,9 @@
     <h1>Base de profesores</h1>
 
     {% for profesor in profesores%}
-        <li>{{profesor}}</li>
-        <button>
-            <a href="{% url 'EliminarProfesor' profesor.nombre %}"> Eliminar</a>
-            <a href="{% url 'EditarProfesor' profesor.nombre %}"> Editar</a>
-        </button>
+        <li>{{profesor.nombre}} | {{profesor.apellido}} | {{profesor.email}} | {{profesor.profesion}}</li>
+        <a href="{% url 'EliminarProfesor' profesor.nombre %}"> Eliminar</a>
+        <a href="{% url 'EditarProfesor' profesor.nombre %}"> Editar</a>
     {%endfor%}
 
 </center>
