@@ -9,6 +9,7 @@ urlpatterns = [
     path('entregables', views.entregables, name="Entregables"),
     path('cursoFormulario',views.cursoFormulario,name="CursoFormulario"),
     path('profesorFormulario',views.profesorFormulario,name="ProfesorFormulario"),
-    path('busquedaCamada', views.busquedaCamada, name="BusquedaCamada"),
-    path('buscar/', views.buscar),
+    path('busquedaCamada', views.busquedaCamada,name="BusquedaCamada"),
+    path('buscar', views.buscar),
+    path('imprimir', views.imprimir,name="Imprimir"),
 ]

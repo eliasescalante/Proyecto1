@@ -52,29 +52,27 @@ def busquedaCamada(request):
     return render(request, r"AppCoder\busquedaCamada.html")
 
 def buscar(request):
-    
+   
+    # return HttpResponse(respuesta)
     if request.GET["camada"]:
-        camada = request.GET['camada']
-        cursos = Curso.objects.filter(camada_icontains=camada)
+         # respuesta = f"Estoy buscando la camada nro : {request.GET['camada']}"
+         camada = request.GET['camada']
+         cursos = Curso.objects.filter(camada__icontains=camada)
 
-        return render(request, r"AppCoder\resultadosBusqueda.html",{"cursos":cursos,"camada":camada})
+         return render(request, r"AppCoder\resultadosBusqueda.html",{"cursos":cursos,"camada":camada})
     else:
-        respuesta = "No enviaste datos"
-    # respuesta = f"Estoy buscando la camada nro: {request.GET['camada']}"
+        respuesta = "no enviaste datos"
+    
     return HttpResponse(respuesta)
 
+def imprimir(request):
 
-# def buscar(request):
-#     camada = request.GET.get('camada', '')
+    cursos = Curso.objects.all()
+    
+    context = {
+        'cursos': cursos
+    }
+    return render(request, r"AppCoder\imprimirBase.html",context)
 
-#     if camada:
-#         cursos = Curso.objects.filter(camada_icontains=camada)
 
-#         if cursos:
-#             return render(request, r"AppCoder\resultadosBusqueda.html",{"cursos":cursos,"camada":camada})
-#         else:
-#             respuesta = "No se encontraron cursos con esa camada"
-#             return render(request, r"AppCoder\busquedaCamada.html", {"respuesta": respuesta})
-#     else:
-#         respuesta = "No enviaste datos"
-#         return render(request, r"AppCoder\busquedaCamada.html", {"respuesta": respuesta})
+
