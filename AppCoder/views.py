@@ -7,19 +7,14 @@ from AppCoder.forms import *
 # Create your views here.
 def inicio(request):
     return render(request,"AppCoder\index.html")
-
 def Cursos(request):
     return render(request,"AppCoder\cursos.html")
-
 def profesores(request):
     return render(request,"AppCoder\profesores.html")
-
 def estudiantes(request):
     return render(request,"AppCoder\estudiantes.html")
-
 def entregables(request):
     return render(request,"AppCoder\entregables.html")
-
 def cursoFormulario(request):
 
     if request.method == 'POST':
@@ -33,24 +28,25 @@ def cursoFormulario(request):
     else:
         miFormulario=CursoFormulario()
     return render(request, "AppCoder\cursoFormulario.html", {"miFormulario":miFormulario})
-
 def profesorFormulario(request):
+
     if request.method =='POST':
+
         miFormulario = ProfesorFormulario(request.POST)
-        informacion = miFormulario.cleaned_data
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
 
-        profesor = Profesor(nombre=informacion['nombre'],apellido=informacion['apellido'],
+            profesor = Profesor(nombre=informacion['nombre'],apellido=informacion['apellido'],
                         email=informacion['email'], profesion=informacion['profesion'])
-        profesor.save()
+            profesor.save()
 
-        return render(request, "AppCoder\index.html")
+            return render(request, "AppCoder\index.html")
     else:
         miFormulario = ProfesorFormulario()
     return render(request,"AppCoder\profesorFormulario.html",{"miFormulario":miFormulario})
 
 def busquedaCamada(request):
     return render(request, r"AppCoder\busquedaCamada.html")
-
 def buscar(request):
    
     # return HttpResponse(respuesta)
@@ -64,7 +60,6 @@ def buscar(request):
         respuesta = "no enviaste datos"
     
     return HttpResponse(respuesta)
-
 def imprimir(request):
 
     cursos = Curso.objects.all()
@@ -73,7 +68,6 @@ def imprimir(request):
         'cursos': cursos
     }
     return render(request, r"AppCoder\imprimirBase.html",context)
-
 def leerProfesores(request):
 
     profesores = Profesor.objects.all()
@@ -81,7 +75,6 @@ def leerProfesores(request):
     contexto = {"profesores": profesores}
 
     return render(request, "AppCoder\leerProfesores.html", contexto)
-
 def eliminarProfesor(request,profesor_nombre):
 
     profesor = Profesor.objects.get(nombre=profesor_nombre)
@@ -91,4 +84,31 @@ def eliminarProfesor(request,profesor_nombre):
     contexto = {"profesores": profesores}
 
     return render(request, "AppCoder\leerProfesores.html",contexto)
+def editarProfesor(request, profesor_nombre):
+
+    profesor = Profesor.objects.get(nombre=profesor_nombre)
+
+    if request.method == 'POST':
+
+        miFormulario = ProfesorFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid():
+
+            informacion = miFormulario.cleaned_data
+
+            profesor.nombre = informacion['nombre']
+            profesor.apellido = informacion['apellido']
+            profesor.email = informacion['email']
+            profesor.profesion = informacion['profesion']
+
+            profesor.save()
+
+            return render(request, "AppCoder\inicio.html")
+    else:
+        miFormulario = ProfesorFormulario(initial={'nombre':profesor.nombre, 'apellido':profesor.apellido,
+                                            'email':profesor.email,'profesion':profesor.profesion})
+
+    return render(request,"AppCoder\editarProfesores.html", {"miFormulario":miFormulario, "profesor_nombre":profesor_nombre})
+
 

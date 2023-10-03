@@ -14,4 +14,5 @@ urlpatterns = [
     path('imprimir', views.imprimir,name="Imprimir"),
     path('leerProfesores', views.leerProfesores,name="LeerProfesores"),
     path('eliminarProfesor/<profesor_nombre>/', views.eliminarProfesor,name="EliminarProfesor"),
+    path('editarProfesor/<profesor_nombre>/', views.editarProfesor,name="EditarProfesor"),
 ]
