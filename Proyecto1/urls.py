@@ -20,7 +20,7 @@ from Proyecto1.views import *
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('AppCoder/',include('AppCoder.urls')),
+    path('',include('AppCoder.urls')),
     # páth()
     # path('saludo',saludo),
     # path('segundavista',segunda_vista),

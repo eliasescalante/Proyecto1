@@ -4,6 +4,11 @@ from django.template import Template, Context
 from django.template import loader
 from AppCoder.models import Curso
 
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 def saludo(request):
 	return HttpResponse("hola django soy elias...")
 
@@ -54,4 +59,30 @@ def curso(self):
     documentoDeTexto = f"--->Curso: {curso.nombre}   Camada: {curso.camada}"
 
     return HttpResponse(documentoDeTexto)
+
+######################################################################################
+
+class CursoList(ListView):
+    model = Curso
+    template_name = "AppCoder\curso_list.html"
+
+class CursoDetalle(DetailView):
+    model = Curso
+    template_name = "AppCoder\curso_detalle.html"
+
+class CursoCreacion(CreateView):
+    model = Curso
+    success_url = "AppCoder\curso\list"
+    fields = ['nombre', 'camada']
+
+class CursoUpdate(UpdateView):
+    model = Curso
+    success_url = "AppCoder\curso\list"
+    fields = ['nombre', 'camada']
+
+class CursoDelete(DeleteView):
+    model = Curso
+    success_url = "AppCoder\curso\list"
+
+
 
