@@ -22,6 +22,7 @@ def estudiantes(request):
     return render(request,"AppCoder\estudiantes.html")
 def entregables(request):
     return render(request,"AppCoder\entregables.html")
+
 def cursoFormulario(request):
 
     if request.method == 'POST':
@@ -35,6 +36,7 @@ def cursoFormulario(request):
     else:
         miFormulario=CursoFormulario()
     return render(request, "AppCoder\cursoFormulario.html", {"miFormulario":miFormulario})
+
 def profesorFormulario(request):
 
     if request.method =='POST':
@@ -54,6 +56,7 @@ def profesorFormulario(request):
 
 def busquedaCamada(request):
     return render(request, r"AppCoder\busquedaCamada.html")
+
 def buscar(request):
    
     # return HttpResponse(respuesta)
@@ -67,6 +70,7 @@ def buscar(request):
         respuesta = "no enviaste datos"
     
     return HttpResponse(respuesta)
+
 def imprimir(request):
 
     cursos = Curso.objects.all()
@@ -131,21 +135,21 @@ class CursoListView(ListView):
 
 class CursoDetalle(DetailView):
     model = Curso
-    template_name = "AppCoder/clases/curso_detalle.html"
+    template_name = "AppCoder/curso_detalle.html"
 
 class CursoCreateView(CreateView):
     model = Curso
-    template_name = "AppCoder/clases/curso_form.html"
+    template_name = "AppCoder/curso_form.html"
     success_url = reverse_lazy("List")
     fields = ['nombre', 'camada']
 
 class CursoUpdateView(UpdateView):
     model = Curso
-    template_name = "AppCoder/clases/curso_edit.html"
-    success_url = "/AppCoder/clases/lista/"
+    template_name = "AppCoder/curso_edit.html"
+    success_url = "/AppCoder/lista/"
     fields = ['nombre', 'camada']
 
 class CursoDeleteView(DeleteView):
     model = Curso
     success_url = reverse_lazy("List")
-    template_name = "AppCoder/clases/curso_confirm_delete.html"
+    template_name = "AppCoder/curso_confirm_delete.html"

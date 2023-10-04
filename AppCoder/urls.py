@@ -1,6 +1,5 @@
 from django.urls import path
 from AppCoder import views
-from AppCoder.views import *
 
 
 urlpatterns = [
