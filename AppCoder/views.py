@@ -131,21 +131,21 @@ class CursoListView(ListView):
 
 class CursoDetalle(DetailView):
     model = Curso
-    template_name = "AppCoder/vistas_clases/curso_detalle.html"
+    template_name = "AppCoder/clases/curso_detalle.html"
 
 class CursoCreateView(CreateView):
     model = Curso
-    template_name = "AppCoder/vistas_clases/curso_form.html"
+    template_name = "AppCoder/clases/curso_form.html"
     success_url = reverse_lazy("List")
     fields = ['nombre', 'camada']
 
 class CursoUpdateView(UpdateView):
     model = Curso
-    template_name = "AppCoder/vistas_clases/curso_edit.html"
+    template_name = "AppCoder/clases/curso_edit.html"
     success_url = "/AppCoder/clases/lista/"
     fields = ['nombre', 'camada']
 
 class CursoDeleteView(DeleteView):
     model = Curso
     success_url = reverse_lazy("List")
-    template_name = "AppCoder/vistas_clases/curso_confirm_delete.html"
+    template_name = "AppCoder/clases/curso_confirm_delete.html"

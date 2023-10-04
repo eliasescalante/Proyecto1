@@ -1,0 +1,17 @@
+{% extends "AppCoder/padre.html"%}
+{% load static %}
+{% block title %} Cursos {% endblock title %}
+
+
+{% block section1%}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form method="post">{% csrf_token %}
+        ¿Estas seguro que deseas borrar el curso "{{object}}"?
+        <input type="submit" value="Submit"/>
+    </form>
+
+{% endblock %}
