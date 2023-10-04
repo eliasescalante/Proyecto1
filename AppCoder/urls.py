@@ -1,5 +1,7 @@
 from django.urls import path
 from AppCoder import views
+from AppCoder.views import *
+
 
 urlpatterns = [
     path('',views.inicio,name="Inicio"),
@@ -15,4 +17,12 @@ urlpatterns = [
     path('leerProfesores', views.leerProfesores,name="LeerProfesores"),
     path('eliminarProfesor/<profesor_nombre>/', views.eliminarProfesor,name="EliminarProfesor"),
     path('editarProfesor/<profesor_nombre>/', views.editarProfesor,name="EditarProfesor"),
+]
+
+urlpatterns += [
+    path('clases/lista/', views.CursoListView.as_view(),name='List'),
+    path('clases/detalle/<int:pk>', views.CursoDetalle.as_view(), name='Detail'),
+    path('clases/nuevo/', views.CursoCreateView.as_view(), name='New'),
+    path('clases/editar/<int:pk>', views.CursoUpdateView.as_view(), name='Edit'),
+    path('clases/eliminar/<int:pk>', views.CursoDeleteView.as_view(),name='Delete')
 ]
