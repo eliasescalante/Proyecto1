@@ -2,6 +2,9 @@ from django.shortcuts import render
 from AppCoder.models import *
 from django.http import HttpResponse
 from AppCoder.forms import *
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+
 
 
 from django.views.generic import ListView
@@ -123,7 +126,28 @@ def editarProfesor(request, profesor_nombre):
 
     return render(request,"AppCoder\editarProfesores.html", {"miFormulario":miFormulario, "profesor_nombre":profesor_nombre})
 
+def login_request(request):
 
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            con = form.cleaned_data.get('password')
+
+            user = authenticate(username=usuario, password=con)
+
+            if user is not None:
+                login(request,user)
+
+                return render(request,"AppCoder/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request,"AppCoder/inicio.html",{"mensaje":"Error, datos incorrectos"})
+        else:
+            return render(request, "AppCoder/inicio.html", {"mensaje":"Error, formulario erroneo"})
+    form = AuthenticationForm()
+
+    return render (request,"AppCoder/login.html", {'form':form})
 
 #########################################################################################################################################
 

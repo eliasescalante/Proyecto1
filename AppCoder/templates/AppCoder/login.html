@@ -1,0 +1,15 @@
+{% extends "AppCoder/padre.html"%}
+{% load static %}
+{% block title %} Login {% endblock title %}
+
+
+{% block section1%}
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit"> Iniciar Sesión</button>
+    </form>
+
+{% endblock %}
