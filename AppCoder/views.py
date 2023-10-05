@@ -2,7 +2,7 @@ from django.shortcuts import render
 from AppCoder.models import *
 from django.http import HttpResponse
 from AppCoder.forms import *
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
 
@@ -148,6 +148,20 @@ def login_request(request):
     form = AuthenticationForm()
 
     return render (request,"AppCoder/login.html", {'form':form})
+
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request,"AppCoder/index.html", {"mensaje":"Usuario creado..."})
+    else:
+        form = UserCreationForm()
+    
+    return render(request, "AppCoder/registro.html", {"form":form})
 
 #########################################################################################################################################
 
