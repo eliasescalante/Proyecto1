@@ -140,11 +140,11 @@ def login_request(request):
             if user is not None:
                 login(request,user)
 
-                return render(request,"AppCoder/index.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request,"AppCoder/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
-                return render(request,"AppCoder/index.html",{"mensaje":"Error, datos incorrectos"})
+                return render(request,"AppCoder/inicio.html",{"mensaje":"Error, datos incorrectos"})
         else:
-            return render(request, "AppCoder/index.html", {"mensaje":"Error, formulario erroneo"})
+            return render(request, "AppCoder/inicio.html", {"mensaje":"Error, formulario erroneo"})
     form = AuthenticationForm()
 
     return render (request,"AppCoder/login.html", {'form':form})
@@ -157,7 +157,7 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             form.save()
-            return render(request,"AppCoder/index.html", {"mensaje":"Usuario creado..."})
+            return render(request,"AppCoder/inicio.html", {"mensaje":"Usuario creado..."})
     else:
         form = UserCreationForm()
     
