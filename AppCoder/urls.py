@@ -12,7 +12,7 @@ urlpatterns = [
     path('cursoFormulario',views.cursoFormulario,name="CursoFormulario"),
     path('profesorFormulario',views.profesorFormulario,name="ProfesorFormulario"),
     path('busquedaCamada', views.busquedaCamada,name="BusquedaCamada"),
-    path('buscar', views.buscar),
+    path('buscar/', views.buscar),
     path('imprimir', views.imprimir,name="Imprimir"),
     path('leerProfesores', views.leerProfesores,name="LeerProfesores"),
     path('eliminarProfesor/<profesor_nombre>/', views.eliminarProfesor,name="EliminarProfesor"),
@@ -20,6 +20,7 @@ urlpatterns = [
     path('login', views.login_request,name= 'Login'),
     path('register', views.register,name='Register'),
     path('logout', LogoutView.as_view(template_name='AppCoder/logout.html'),name='Logout'),
+    path('editarPerfil', views.editarPerfil ,name="EditarPerfil"),
 ]
 
 urlpatterns += [

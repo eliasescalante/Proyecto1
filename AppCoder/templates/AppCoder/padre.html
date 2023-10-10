@@ -25,18 +25,24 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Profesores' %}">Profesores</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="{% url 'Profesores' %}">Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Cursos' %}">Cursos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Estudiantes' %}">Estudiantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Entregables' %}">Entregables</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Cursos'%}">Cursos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'Login'%}">INICIAR</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'Cursos'%}">Cursos</a></li> -->
+                        {% if not request.user.is_authenticated %}
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'Login'%}">INICIAR</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'CursoFormulario' %}">CursoFormulario</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ProfesorFormulario' %}">ProfesorFormulario</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'BusquedaCamada' %}">BusquedaCamada</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Imprimir' %}">Imprimir</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerProfesores' %}">Base de Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Registrarse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'EditarPerfil' %}">EditarPerfil</a></li>
+                        {% if request.user.is_authenticated %}
+                        <p class="text-muted small mb-4 mb-lg-0">Hola, {{user.username}}!!!</p>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

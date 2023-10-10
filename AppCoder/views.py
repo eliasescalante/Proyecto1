@@ -16,9 +16,11 @@ from django.urls import reverse_lazy
 
 
 # Create your views here.
-@login_required
 def inicio(request):
-    return render(request,"AppCoder\index.html")
+    avatares = Avatar.objects.filter(user=request.user.id)
+
+    return render(request,"AppCoder\index.html", {"url":avatares[0].imagen.url})
+    
 def Cursos(request):
     return render(request,"AppCoder\cursos.html")
 def profesores(request):
@@ -195,3 +197,25 @@ class CursoDeleteView(DeleteView):
     model = Curso
     success_url = reverse_lazy("List")
     template_name = "AppCoder/curso_confirm_delete.html"
+
+#############################################################################
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password1']
+            usuario.save()
+        
+            return render(request, "AppCoder\inicio.html")
+    else:
+        miFormulario = UserEditForm(initial={'email': usuario.email})
+    
+    return render(request,"AppCoder\editarPerfil.html", {"miFormulario": miFormulario, "usuario":usuario})
+
