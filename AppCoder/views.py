@@ -15,14 +15,14 @@ from django.urls import reverse_lazy
 
 
 
-# Create your views here.
+# @login_required
 def inicio(request):
-    avatares = Avatar.objects.filter(user=request.user.id)
-
-    return render(request,"AppCoder\index.html", {"url":avatares[0].imagen.url})
+    # avatares = Avatar.objects.filter(user=request.user)[0]
+    return render(request,"AppCoder\index.html")
     
-def Cursos(request):
+def cursos(request):
     return render(request,"AppCoder\cursos.html")
+
 def profesores(request):
     return render(request,"AppCoder\profesores.html")
 def estudiantes(request):
@@ -218,4 +218,5 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={'email': usuario.email})
     
     return render(request,"AppCoder\editarPerfil.html", {"miFormulario": miFormulario, "usuario":usuario})
+
 

@@ -30,9 +30,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'Estudiantes' %}">Estudiantes</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Entregables' %}">Entregables</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Cursos'%}">Cursos</a></li> -->
-                        {% if not request.user.is_authenticated %}
-                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'Login'%}">INICIAR</a></li>
-                        {% endif %}
+                        
                         <li class="nav-item"><a class="nav-link" href="{% url 'CursoFormulario' %}">CursoFormulario</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'ProfesorFormulario' %}">ProfesorFormulario</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'BusquedaCamada' %}">BusquedaCamada</a></li>
@@ -40,17 +38,21 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'LeerProfesores' %}">Base de Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Registrarse</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'EditarPerfil' %}">EditarPerfil</a></li>
+                        {% if not request.user.is_authenticated %}
+                            <li class="nav-item"><a class="btn btn-primary" href="{% url 'Login'%}">INICIAR</a></li>
+                        {% endif %}
                         {% if request.user.is_authenticated %}
-                        <p class="text-muted small mb-4 mb-lg-0">Hola, {{user.username}}!!!</p>
+                            <li class="nav-item"><a class="btn btn-primary">{{user.username}}</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
+        
 
         {% block section1 %}
         {% endblock %}
-
+        
       <!-- Footer-->
       <footer class="py-5 bg-black">
         <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2023</p></div>
