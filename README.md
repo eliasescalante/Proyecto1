@@ -1,8 +1,8 @@
-# Proyecto1
+# Proyecto 1
 
 ----
 
-Primera entrega del curso de Python - Django en CODERHOUSE
+## Primera entrega del curso de Python - Django en CODERHOUSE
 
 ------
 - Practica con Django
